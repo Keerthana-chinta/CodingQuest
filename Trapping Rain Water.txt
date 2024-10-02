@@ -1,0 +1,34 @@
+Problem link: (https://leetcode.com/problems/trapping-rain-water/)
+Programming Language : Java
+Solution 1:
+class Solution {
+    public int trap(int[] height) {
+        int res = 0; // Initialize the result to hold the total trapped water
+        int n = height.length; // Get the length of the height array
+        
+        // Iterate through each bar, excluding the first and last bars
+        for (int i = 1; i < n - 1; i++) {
+            int left = height[i]; // Initialize left max height as the current bar's height
+            
+            // Find the maximum height on the left side of the current bar
+            for (int j = 0; j < i; j++) {
+                left = Math.max(left, height[j]); // Update left max if a taller bar is found
+            }
+            
+            int right = height[i]; // Initialize right max height as the current bar's height
+            
+            // Find the maximum height on the right side of the current bar
+            for (int j = i + 1; j < n; j++) {
+                right = Math.max(right, height[j]); // Update right max if a taller bar is found
+            }
+            
+            // Calculate the water trapped above the current bar
+            res += Math.min(left, right) - height[i]; // Add trapped water to the result
+        }
+        
+        return res; // Return the total amount of trapped water
+    }
+}
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
