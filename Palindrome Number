@@ -1,0 +1,23 @@
+Problem Link: https://leetcode.com/problems/palindrome-number/
+Programming Language: Java
+#Solution:
+class Solution {
+    public boolean isPalindrome(int x) {
+        int rev=0,rm=0;
+        int temp=x;
+        while(temp!=0)
+        {
+           rm=temp%10;
+           rev=(rev*10)+rm;
+           temp=temp/10;
+        }
+        if(x>=0&&rev==x)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
